@@ -1,3 +1,0 @@
-== wordpress
-
-A gem that provides...
