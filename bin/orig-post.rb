@@ -5,25 +5,24 @@
 # http://www.opensource.org/licenses/mit-license.php
 # http://jmettraux.wordpress.com/2007/11/05/posting-to-wordpress-via-ruby-and-atompub/
 
-require 'optparse'
+# require 'optparse'
 require 'net/http'
 
 require 'rubygems'
 require 'atom/entry' # sudo gem install atom-tools
 require 'atom/collection'
+require 'trollop'
+require 'yaml'
 
-# a great thanks to the devs of all the libs used here
-
-#
 # some info about you and your blog
 
 blog = "yourblog"
 authorname = "Your Name"
-username = "x"
-password = "y"
+username = ""
+password = ""
 
-bloguri = "http://#{blog}.wordpress.com"
-base = "https://#{blog}.wordpress.com/wp-app.php"
+bloguri = "http://localhost/wordpress/wp-admin/"
+base = "http://localhost/wordpress/wp-app.php"
 
 #
 # parse options
@@ -32,53 +31,22 @@ tags = []
 title = nil
 type = 'html'
 
-opts = OptionParser.new
-opts.banner = "Usage: post.rb [options]"
-opts.separator ""
-opts.separator "options :"
 
-opts.on(
-    "-c",
-    "--categories {list}",
-    "comma separated list of tags/categories") do |v|
+opts = Trollop::options do
+  version "wordpres 0.0.1 (c) 2009 Nate Murray"
+  banner <<-EOS
+wordpres - edit a wordpress blog the cli
 
-    tags = v.split ","
+Usage: post.rb [options] content
+where [options] are:
+EOS
+  opt :category, "tag/category. specify multiple times for multiple categories", :type => String, :multi => true
+  opt :title, "title for the post", :required => true
+  opt :type, "type of the content [html|xhtml|text]", :default => 'html', :type => String
+  opt :config, "path to config file containing blog specifications", :default => File.expand_path('~/.wordpressrb.yml'), :type => String
+  opt :blog, "short name of the blog to use", :default => 'default'
 end
-
-opts.on(
-    "-t",
-    "--title {title}",
-    "title for the post") do |v|
-
-    title = v
-end
-
-opts.on(
-    "-T",
-    "--type {html|xhtml|text}",
-    "type of the content. ('html' is the default).") do |v|
-
-    type = v
-end
-
-opts.on(
-    "-h",
-    "--help",
-    "displays this help") do
-
-    puts
-    puts opts.to_s
-    puts
-    exit 0
-end
-
-opts.parse ARGV
-
-raise "please specify a title for the post with the -t option" \
-    unless title
-
-#
-# gather content
+Trollop::die :type, "type must be one of [html|xhtml|text]" unless opts[:type] =~ /^(x?html|text)$/i
 
 content = ""
 loop do
