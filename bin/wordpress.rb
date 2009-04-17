@@ -38,14 +38,6 @@ config = blog_configs[opts[:blog]]
   Trollop::die :config, "#{opts[:config]} blog #{opts[:blog]} does not contain a value for #{k}." unless config.has_key?(k)
 end
 
-service      'GET' => 'get_service'
-categories   'GET' => 'get_categories_xml'
-post/(\d+)   'GET' => 'get_post',  'PUT' => 'put_post', 'DELETE' => 'delete_post'
-posts/?(\d+) 'GET' => 'get_posts', 'POST' => 'create_post'
-attachments/?(\d+)    'GET' => 'get_attachment', 'POST' => 'create_attachment'
-attachment/file/(\d+) 'GET' => 'get_file',       'PUT' => 'put_file', 'DELETE' => 'delete_file'
-attachment/(\d+)      'GET' => 'get_attachment', 'PUT' => 'put_attachment', 'DELETE' => 'delete_attachment'
-
 opts[:category] ||= []
 
 content = begin
