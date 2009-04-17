@@ -1,12 +1,16 @@
-localhost:
-  bloguri: http://localhost/wordpress
+default:
+  author_name: Nate Murray
+  blog_name: My Blog
+  blog_uri: http://localhost/wordpress
   endpoint_uri: http://localhost/wordpress/wp-app.php
-  username: foo
+  user_name: foo
   password: foo
 blog2:
-  bloguri: http://localhost/wordpress2
+  author_name: Nate Murray
+  Blog_name: My Blog
+  blog_uri: http://localhost/wordpress2
   endpoint_uri: http://localhost/wordpress2/wp-app.php
-  username: foo
+  user_name: foo
   password: foo
 
 # vim: ft=yaml
