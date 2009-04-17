@@ -5,17 +5,18 @@ Update a wordpress blog from the command-line.
 Setup
 =====
 
-  cp config/wordpressrb.yml.example ~/.wordpressrb.yml
-  vi ~/.wordpressrb.yml
+    cp config/wordpressrb.yml.example ~/.wordpressrb.yml
+    vi ~/.wordpressrb.yml
 
 Usage
 =====
 
-  echo "hello world" | ruby bin/wordpress-post.rb --title testing
+    echo "hello world" | ruby bin/wordpress-post.rb --title testing
 
 Help
 ====
-bin/wordpress-post.rb --help
+
+    bin/wordpress-post.rb --help
 
 TODO
 ====
