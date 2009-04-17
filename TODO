@@ -1,4 +1,6 @@
 TODO:
+* Add git-style binaries
+* Add more actions:
 Possible services from: wp-app.php
 
 service      'GET' => 'get_service'
