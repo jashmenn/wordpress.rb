@@ -1,0 +1,12 @@
+localhost:
+  bloguri: http://localhost/wordpress
+  endpoint_uri: http://localhost/wordpress/wp-app.php
+  username: foo
+  password: foo
+blog2:
+  bloguri: http://localhost/wordpress2
+  endpoint_uri: http://localhost/wordpress2/wp-app.php
+  username: foo
+  password: foo
+
+# vim: ft=yaml
